@@ -1,0 +1,20 @@
+.root {
+-fx-background-color: #686868;
+ }
+.menu-bar{
+-fx-background-color: #686868;
+    -fx-border-color: #C8C8C8;
+}
+.menu-item{
+-fx-background-color: #686868;
+}
+.slider-track{
+ -fx-background-color: #383838;
+}
+.label{
+ -fx-text-fill: #E8E8E8;
+}
+.text-field{
+-fx-background-color: #E0E0E0;
+}
+
