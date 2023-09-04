@@ -14,7 +14,7 @@ public class Utilities {
     public static ObservableList<String> listFilesForFolder(Path path) {
         File folder = path.toFile();
             return FXCollections.observableList(Stream.of(folder.listFiles())
-                    .filter(file -> ! file.isDirectory())
+                    .filter(file -> !file.isDirectory())
                     .map(File::getName)
                     .collect(Collectors.toList()));
     }

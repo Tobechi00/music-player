@@ -35,59 +35,59 @@ public class ComponentMethods {
 
         return menuBar;
     }
-    public void Load(Path path,ListView<String> listView){
+    public void load(Path path,ListView<String> listView){
 
         listView.setItems(Utilities.listFilesForFolder(path));
     }
-    public void setListViewListener(ListView<String> listView, TextField directory, TextField selectedTrack, Entity entity,Slider slider,Label sliderLabel ){
+    public void setListViewListener(ListView<String> listView, TextField directory, TextField selectedTrack, MediaEntity mediaEntity, Slider slider, Label sliderLabel ){
         listView.setOnMouseClicked(mouseEvent -> {
             if (selectedTrack.getText().isEmpty()){
                   selectedTrack.setText(listView.getSelectionModel().getSelectedItem());
-                  entity.setMedia(new Media(Utilities.combine(Path.of(directory.getText()),Path.of(selectedTrack.getText())).toURI().toString()));
-                  entity.setMediaPlayer(new MediaPlayer(entity.getMedia()));
+                  mediaEntity.setMedia(new Media(Utilities.combine(Path.of(directory.getText()),Path.of(selectedTrack.getText())).toURI().toString()));
+                  mediaEntity.setMediaPlayer(new MediaPlayer(mediaEntity.getMedia()));
             }else {
-                  entity.getMediaPlayer().dispose();
+                  mediaEntity.getMediaPlayer().dispose();
                   selectedTrack.setText(listView.getSelectionModel().getSelectedItem());
-                  entity.setMedia(new Media(Utilities.combine(Path.of(directory.getText()),Path.of(selectedTrack.getText())).toURI().toString()));
-                  entity.setMediaPlayer(new MediaPlayer(entity.getMedia()));
+                  mediaEntity.setMedia(new Media(Utilities.combine(Path.of(directory.getText()),Path.of(selectedTrack.getText())).toURI().toString()));
+                  mediaEntity.setMediaPlayer(new MediaPlayer(mediaEntity.getMedia()));
             }
-            entity.getMediaPlayer().setOnReady(() -> setSlider(entity,slider,sliderLabel,listView,selectedTrack,directory));
+            mediaEntity.getMediaPlayer().setOnReady(() -> setSlider(mediaEntity,slider,sliderLabel,listView,selectedTrack,directory));
         });
     }
 
-    public void setSlider(Entity entity,Slider slider,Label sliderLabel,ListView<String> listView,TextField selectedTrack,TextField directoryField) {
-            entity.getMediaPlayer().setOnEndOfMedia(() -> playNext(entity,listView,selectedTrack,directoryField,slider,sliderLabel));
+    public void setSlider(MediaEntity mediaEntity, Slider slider, Label sliderLabel, ListView<String> listView, TextField selectedTrack, TextField directoryField) {
+            mediaEntity.getMediaPlayer().setOnEndOfMedia(() -> playNext(mediaEntity,listView,selectedTrack,directoryField,slider,sliderLabel));
             slider.maxProperty().bind(Bindings.createDoubleBinding(
-                    () -> entity.getMediaPlayer()
+                    () -> mediaEntity.getMediaPlayer()
                             .getTotalDuration()
                             .toSeconds(),
-                    entity.getMediaPlayer().totalDurationProperty()
+                    mediaEntity.getMediaPlayer().totalDurationProperty()
             ));
-            entity.getMediaPlayer().currentTimeProperty().addListener((observableValue, duration, t1) -> {
+            mediaEntity.getMediaPlayer().currentTimeProperty().addListener((observableValue, duration, t1) -> {
                 slider.setValue(t1.toSeconds());
                 sliderLabel.setText(Utilities.millsToMins((long) t1.toMillis()));
             });
-            slider.setOnMouseDragged(mouseEvent -> entity.getMediaPlayer().seek(Duration.seconds(slider.getValue())));
+            slider.setOnMouseDragged(mouseEvent -> mediaEntity.getMediaPlayer().seek(Duration.seconds(slider.getValue())));
         }
 
-    public void playNext(Entity entity,ListView<String> listView,TextField selectedTrack,TextField directoryField,Slider slider,Label sliderLabel){
-        entity.getMediaPlayer().dispose();
+    public void playNext(MediaEntity mediaEntity, ListView<String> listView, TextField selectedTrack, TextField directoryField, Slider slider, Label sliderLabel){
+        mediaEntity.getMediaPlayer().dispose();
 
         listView.getSelectionModel().selectNext();
         selectedTrack.setText(listView.getSelectionModel().getSelectedItem());
-        entity.setMedia(new Media(Utilities.combine(Path.of(directoryField.getText()),Path.of(selectedTrack.getText())).toURI().toString()));
-        entity.setMediaPlayer(new MediaPlayer(entity.getMedia()));
-        entity.getMediaPlayer().setOnReady(() -> setSlider(entity,slider,sliderLabel,listView,selectedTrack,directoryField));
-        entity.getMediaPlayer().play();
+        mediaEntity.setMedia(new Media(Utilities.combine(Path.of(directoryField.getText()),Path.of(selectedTrack.getText())).toURI().toString()));
+        mediaEntity.setMediaPlayer(new MediaPlayer(mediaEntity.getMedia()));
+        mediaEntity.getMediaPlayer().setOnReady(() -> setSlider(mediaEntity,slider,sliderLabel,listView,selectedTrack,directoryField));
+        mediaEntity.getMediaPlayer().play();
     }
-    public void playPrevious(Entity entity,ListView<String> listView,TextField selectedTrack,TextField directoryField,Slider slider,Label sliderLabel){
-        entity.getMediaPlayer().dispose();
+    public void playPrevious(MediaEntity mediaEntity, ListView<String> listView, TextField selectedTrack, TextField directoryField, Slider slider, Label sliderLabel){
+        mediaEntity.getMediaPlayer().dispose();
         listView.getSelectionModel().selectPrevious();
         selectedTrack.setText(listView.getSelectionModel().getSelectedItem());
-        entity.setMedia(new Media(Utilities.combine(Path.of(directoryField.getText()),Path.of(selectedTrack.getText())).toURI().toString()));
-        entity.setMediaPlayer(new MediaPlayer(entity.getMedia()));
-        entity.getMediaPlayer().setOnReady(() -> setSlider(entity,slider,sliderLabel,listView,selectedTrack,directoryField));
-        entity.getMediaPlayer().play();
+        mediaEntity.setMedia(new Media(Utilities.combine(Path.of(directoryField.getText()),Path.of(selectedTrack.getText())).toURI().toString()));
+        mediaEntity.setMediaPlayer(new MediaPlayer(mediaEntity.getMedia()));
+        mediaEntity.getMediaPlayer().setOnReady(() -> setSlider(mediaEntity,slider,sliderLabel,listView,selectedTrack,directoryField));
+        mediaEntity.getMediaPlayer().play();
     }
 
     }

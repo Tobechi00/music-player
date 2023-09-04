@@ -29,7 +29,7 @@ public class Layout {
 
     ListView<String> listView;
 
-    Entity entity;
+    MediaEntity mediaEntity;
 
     List<String> list;
 
@@ -46,7 +46,7 @@ public class Layout {
 
         list = new ArrayList<>();
 
-        entity = new Entity();
+        mediaEntity = new MediaEntity();
         ComponentMethods componentMethods = new ComponentMethods();
 
         selectedTrack = new TextField();
@@ -71,8 +71,8 @@ public class Layout {
         load.setOnAction(actionEvent -> {
             if (!directoryField.getText().isEmpty()){
 
-                componentMethods.Load(Path.of(directoryField.getText()),listView);
-                componentMethods.setListViewListener(listView,directoryField,selectedTrack, entity,timeSlider,sliderLabel);
+                componentMethods.load(Path.of(directoryField.getText()),listView);
+                componentMethods.setListViewListener(listView,directoryField,selectedTrack, mediaEntity,timeSlider,sliderLabel);
                 trackList = listView.getItems().stream().toList();
             }
         });
@@ -81,7 +81,7 @@ public class Layout {
         play.setText("play");
         play.setOnAction(actionEvent -> {
             if (!selectedTrack.getText().isEmpty()){
-                entity.getMediaPlayer().play();
+                mediaEntity.getMediaPlayer().play();
             }
         });
 
@@ -90,7 +90,7 @@ public class Layout {
         pause.setText("pause");
         pause.setOnAction(actionEvent -> {
             if (!selectedTrack.getText().isEmpty()){
-                entity.getMediaPlayer().pause();
+                mediaEntity.getMediaPlayer().pause();
             }
         });
 
@@ -98,7 +98,7 @@ public class Layout {
         previous.setText("prev");
         previous.setOnAction(actionEvent -> {
             if (!selectedTrack.getText().isEmpty()) {
-                componentMethods.playPrevious(entity, listView, selectedTrack, directoryField, timeSlider, sliderLabel);
+                componentMethods.playPrevious(mediaEntity, listView, selectedTrack, directoryField, timeSlider, sliderLabel);
             }
         });
 
@@ -106,7 +106,7 @@ public class Layout {
         next.setText("next");
         next.setOnAction(actionEvent -> {
             if (!selectedTrack.getText().isEmpty()) {
-                componentMethods.playNext(entity, listView, selectedTrack, directoryField, timeSlider, sliderLabel);
+                componentMethods.playNext(mediaEntity, listView, selectedTrack, directoryField, timeSlider, sliderLabel);
             }
         });
 

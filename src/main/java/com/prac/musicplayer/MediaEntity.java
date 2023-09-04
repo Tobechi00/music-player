@@ -3,7 +3,7 @@ package com.prac.musicplayer;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class Entity {
+public class MediaEntity {
     private MediaPlayer mediaPlayer;
     private Media media;
 
