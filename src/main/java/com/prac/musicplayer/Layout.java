@@ -31,8 +31,6 @@ public class Layout {
 
     MediaEntity mediaEntity;
 
-    List<String> list;
-
     List<String> trackList;
 
     public Layout(Stage stage) {
@@ -43,8 +41,6 @@ public class Layout {
 
         directoryField = new TextField();
         directoryField.setEditable(false);
-
-        list = new ArrayList<>();
 
         mediaEntity = new MediaEntity();
         ComponentController componentController = new ComponentController();
