@@ -1,5 +1,7 @@
-package com.prac.musicplayer;
+package com.prac.musicplayer.view;
 
+import com.prac.musicplayer.controller.MediaEntity;
+import com.prac.musicplayer.controller.ComponentController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Layout {
@@ -31,7 +32,6 @@ public class Layout {
 
     MediaEntity mediaEntity;
 
-    List<String> list;
 
     List<String> trackList;
 
@@ -44,7 +44,6 @@ public class Layout {
         directoryField = new TextField();
         directoryField.setEditable(false);
 
-        list = new ArrayList<>();
 
         mediaEntity = new MediaEntity();
         ComponentController componentController = new ComponentController();

@@ -1,4 +1,4 @@
-package com.prac.musicplayer;
+package com.prac.musicplayer.utilities;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -1,5 +1,6 @@
 package com.prac.musicplayer;
 
+import com.prac.musicplayer.view.Layout;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

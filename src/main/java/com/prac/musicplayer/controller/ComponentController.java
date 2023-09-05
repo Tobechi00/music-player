@@ -1,5 +1,6 @@
-package com.prac.musicplayer;
+package com.prac.musicplayer.controller;
 
+import com.prac.musicplayer.utilities.Utilities;
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.*;
 import javafx.scene.media.Media;

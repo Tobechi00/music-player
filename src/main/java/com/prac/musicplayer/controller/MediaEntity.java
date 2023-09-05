@@ -1,4 +1,4 @@
-package com.prac.musicplayer;
+package com.prac.musicplayer.controller;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
