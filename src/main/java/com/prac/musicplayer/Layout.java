@@ -59,7 +59,7 @@ public class Layout {
         searchField.textProperty().addListener((observableValue, s, t1) -> {
             listView.getItems().clear();
             for (String i : trackList){
-                if (i.toLowerCase().contains(searchField.getText())){
+                if (i.toLowerCase().contains(searchField.getText().toLowerCase())){
                     listView.getItems().add(i);
                 }
             }
