@@ -5,7 +5,6 @@ import javafx.scene.media.MediaPlayer;
 
 public class MediaEntity {
     private MediaPlayer mediaPlayer;
-    private Media media;
 
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
@@ -15,11 +14,4 @@ public class MediaEntity {
         this.mediaPlayer = mediaPlayer;
     }
 
-    public Media getMedia() {
-        return media;
-    }
-
-    public void setMedia(Media media) {
-        this.media = media;
-    }
 }
