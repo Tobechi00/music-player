@@ -54,8 +54,8 @@ public class Layout {
 
         searchField = new TextField();
         searchField.setPromptText("search");
-
         searchField.textProperty().addListener((observableValue, s, t1) -> componentController.search(listView, trackList, searchField));
+
 
         load = new Button();
         load.setText("load");
